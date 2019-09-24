@@ -1,0 +1,12 @@
+[
+    {
+        "$id": "test.json",
+        "a": {
+            "$ref": "source.json"
+        }
+    },
+    {
+        "$id": "source.json",
+        "const": 5
+    }
+]

@@ -1,0 +1,11 @@
+[
+    {
+        "$id": "test.json",
+        "definitions": {
+            "test": 5
+        },
+        "const": {
+            "$ref": "#/definitions/test"
+        }
+    }
+]

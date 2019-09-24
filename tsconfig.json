@@ -1,0 +1,20 @@
+{
+    "compilerOptions": {
+        "target": "es6",
+        "forceConsistentCasingInFileNames": true,
+        "module": "commonjs",
+        "types": ["node"],
+        "lib": ["es2018"],
+        "outDir": "dist",
+        "declaration": true,
+        "sourceMap": true,
+        "removeComments": false,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "noImplicitReturns": true,
+        "strict": true,
+        "incremental": true,
+        "noImplicitAny": false
+    },
+    "include": ["src/**/*", "spec/**/*"]
+}

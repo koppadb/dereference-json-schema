@@ -1,0 +1,7 @@
+{
+    "$id": "one.json",
+    "test": {
+        "type": "object",
+        "required": ["name"]
+    }
+}

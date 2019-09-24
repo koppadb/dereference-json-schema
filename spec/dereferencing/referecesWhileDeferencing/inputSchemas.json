@@ -1,0 +1,29 @@
+[
+    {
+        "$id": "one.json",
+        "test": {
+            "$ref": "two.json#/definitions/a/b"
+        }
+    },
+    {
+        "$id": "two.json",
+        "definitions": {
+            "$ref": "three.json"
+        }
+    },
+    {
+        "$id": "three.json",
+        "a": {
+            "b": {
+                "type": "object",
+                "required": {
+                    "$ref": "four.json#/required"
+                }
+            }
+        }
+    },
+    {
+        "$id": "four.json",
+        "required": ["name"]
+    }
+]
