@@ -1,6 +1,6 @@
 # dereference-json-schema
 
-This JavaScript library does resolve `$ref` references in a given set of JSON schemas.
+JavaScript library to resolve `$ref` references in a given set of JSON schemas
 
 ```javascript
 const schemas = new Dereferencer(inputSchemas, options).dereferenceSchemas();

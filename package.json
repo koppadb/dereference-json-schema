@@ -1,5 +1,6 @@
 {
     "name": "@koppadb/dereference-json-schema",
+    "description": "JavaScript library to resolve `$ref` references in a given set of JSON schemas",
     "license": "ISC",
     "version": "0.0.0",
     "main": "dist/src/index.js",
