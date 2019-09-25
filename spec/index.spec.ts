@@ -49,4 +49,55 @@ describe('Dereferencer', function() {
         expect(() => Dereferencer.getJSONPointerKeys('one/two')).toThrowError();
         expect(() => Dereferencer.getJSONPointerKeys('/one/')).toThrowError();
     });
+
+    it('should merge objects', async function() {
+        expect(
+            Dereferencer.merge(
+                {
+                    a: 1,
+                    b: 2,
+                },
+                { b: 'overwritten', c: 3 }
+            )
+        ).toEqual({
+            a: 1,
+            b: 'overwritten',
+            c: 3,
+        });
+        expect(
+            Dereferencer.merge(
+                {
+                    a: {
+                        b: 2,
+                    },
+                },
+                {
+                    a: {
+                        b: 'overwritten',
+                        c: 3,
+                    },
+                }
+            )
+        ).toEqual({
+            a: {
+                b: 'overwritten',
+                c: 3,
+            },
+        });
+    });
+
+    it('should merge array by overwriting them', async function() {
+        expect(
+            Dereferencer.merge(
+                {
+                    a: ['test', 'another test'],
+                    b: 2,
+                },
+                { a: ['overwritten'], b: ['overwritten'] }
+            )
+        ).toEqual({
+            a: ['overwritten'],
+            b: ['overwritten'],
+        });
+    });
 });

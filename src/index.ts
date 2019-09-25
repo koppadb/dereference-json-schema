@@ -1,5 +1,5 @@
 import * as cloneDeep from 'lodash.clonedeep';
-import * as merge from 'lodash.merge';
+import * as mergeWith from 'lodash.mergewith';
 import * as URI from 'uri-js';
 import { inspect } from 'util';
 
@@ -151,7 +151,7 @@ export class Dereferencer {
         }
 
         if (this.options.mergeAdditionalProperties) {
-            merge(dereferencedSubSchema, referenceSubSchema);
+            Dereferencer.merge(dereferencedSubSchema, referenceSubSchema);
             delete dereferencedSubSchema.$ref;
         }
 
@@ -265,5 +265,21 @@ export class Dereferencer {
             uri = uri.substring(1);
         }
         return uri;
+    }
+
+    /**
+     * Recursivly merges one object into another, overwriting properties
+     * Undefined source properties will not get merged
+     * Arrays will get completely overwritten
+     * @param destination
+     * @param source
+     */
+    public static merge(destination: any, source: any) {
+        return mergeWith(destination, source, (_a, b) => {
+            if (Array.isArray(b)) {
+                return b;
+            }
+            return;
+        });
     }
 }

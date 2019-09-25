@@ -25,7 +25,9 @@ This package does **not**:
 ### Additional features
 
 -   Specify `$deref: false` at the root of a schema to fully disable dereferencing in that schema
--   Set `options.mergeAdditionalProperties` to `true` in order to keep or override properties from references:
+-   Set `options.mergeAdditionalProperties` to `true` in order to keep or override properties from references.
+    -   `undefined` values will _not_ get merged
+    -   Arrays will get completely overwritten, _not_ merged or concatinated
 
 ```json
 {
@@ -60,7 +62,7 @@ This package uses the following production dependencies:
 
 -   `uri-js` for handling schema URIs
 -   `lodash.clonedeep` for cloning objects
--   `lodash.merge` for merging objects
+-   `lodash.mergewith` for merging objects
 
 ## License
 
