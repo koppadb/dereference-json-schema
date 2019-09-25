@@ -16,7 +16,7 @@
         "lint:prettier": "prettier --loglevel warn --write \"**/*.{json,md,ts}\"",
         "lint:tslint": "tslint --project . --fix",
         "lint": "concurrently \"npm run lint:prettier\" \"npm run lint:tslint\"",
-        "prepublishOnly": "npm run lint && npm run test && npm run build"
+        "prepublishOnly": "npm run test && npm run build"
     },
     "prettier": {
         "singleQuote": true,
