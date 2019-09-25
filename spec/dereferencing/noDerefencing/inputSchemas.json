@@ -2,6 +2,8 @@
     {
         "$id": "test.json",
         "$deref": false,
-        "$ref": "test.json"
+        "a": {
+            "$ref": "test.json"
+        }
     }
 ]

@@ -1,6 +1,7 @@
 import * as cloneDeep from 'lodash.clonedeep';
 import * as merge from 'lodash.merge';
 import * as URI from 'uri-js';
+import { inspect } from 'util';
 
 export interface InputSchema {
     $id: string;
@@ -125,6 +126,13 @@ export class Dereferencer {
                 delete referenceSubSchema.$id;
             }
             if (!this.options.mergeAdditionalProperties) {
+                if (Object.keys(subSchema).length != 1) {
+                    throw new Error(
+                        `Additional properties ${inspect(
+                            Object.keys(subSchema)
+                        )} when using "$ref" in schema "${uri}" are only allowed with the "mergeAdditionalProperties" option.`
+                    );
+                }
                 return referenceSubSchema;
             }
         }
@@ -199,9 +207,15 @@ export class Dereferencer {
         const keys = Dereferencer.getJSONPointerKeys(fragment);
         keys.unshift(schemaURI);
 
-        let disableDereferencing = this.schemas[schemaURI].$deref == false;
+        let disableDereferencing =
+            (this.schemas[schemaURI] || {}).$deref == false;
 
         for (const key of keys) {
+            if (!subSchema.hasOwnProperty(key)) {
+                throw new Error(
+                    `Reference URI "${uri}" could not be resolved at part "${key}".`
+                );
+            }
             let value = subSchema[key];
             if (
                 !Dereferencer.isPlainValue(value) &&

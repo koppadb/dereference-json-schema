@@ -1,14 +1,15 @@
-import { pathExists, readdir, readJSON } from 'fs-extra';
+import { pathExists, readdir, readdirSync, readJSON } from 'fs-extra';
 import 'jasmine';
 import { join } from 'path';
 import { Dereferencer, DereferencerOptions } from '../../src/index';
 
 describe('dereferencing', function() {
-    it('should dereference as expected', async function() {
-        const folderPaths = (await readdir(__dirname))
-            .filter(path => !path.includes('.'))
-            .map(path => join(__dirname, path));
-        for (const basePath of folderPaths) {
+    const folderPaths = readdirSync(__dirname).filter(
+        path => !path.includes('.')
+    );
+    for (let basePath of folderPaths) {
+        it(`should dereference test "${basePath}" as expected`, async function() {
+            basePath = join(__dirname, basePath);
             const inputSchemas = await readJSON(
                 join(basePath, 'inputSchemas.json')
             );
@@ -39,6 +40,6 @@ describe('dereferencing', function() {
             for (const schema of expectedSchemas) {
                 expect(schemas[schema.$id]).toEqual(schema, basePath);
             }
-        }
-    });
+        });
+    }
 });
