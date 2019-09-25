@@ -1,5 +1,7 @@
 # dereference-json-schema
 
+[![Coverage Status](https://coveralls.io/repos/github/koppadb/dereference-json-schema/badge.svg)](https://coveralls.io/github/koppadb/dereference-json-schema)
+
 JavaScript library to resolve `$ref` references in a given set of JSON schemas
 
 ```javascript

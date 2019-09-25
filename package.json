@@ -12,6 +12,7 @@
     "scripts": {
         "build": "tsc --project .",
         "test": "npm run lint && nyc ts-node node_modules/jasmine/bin/jasmine.js",
+        "test:coveralls": "nyc report --reporter=text-lcov | coveralls",
         "lint:prettier": "prettier --loglevel warn --write \"**/*.{json,md,ts}\"",
         "lint:tslint": "tslint --project . --fix",
         "lint": "concurrently \"npm run lint:prettier\" \"npm run lint:tslint\""
@@ -33,6 +34,7 @@
         "@types/jasmine": "^3.4.0",
         "@types/node": "^12.7.7",
         "concurrently": "^4.1.2",
+        "coveralls": "^3.0.6",
         "fs-extra": "^8.1.0",
         "jasmine": "^3.5.0",
         "nyc": "^14.1.1",
