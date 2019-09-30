@@ -137,7 +137,7 @@ export class Dereferencer {
             }
         }
 
-        const dereferencedSubSchema: any = Array.isArray(subSchema)
+        let dereferencedSubSchema: any = Array.isArray(subSchema)
             ? new Array(subSchema.length)
             : {};
         for (const key in subSchema) {
@@ -150,9 +150,13 @@ export class Dereferencer {
             );
         }
 
-        if (this.options.mergeAdditionalProperties) {
-            Dereferencer.merge(dereferencedSubSchema, referenceSubSchema);
+        if (
+            this.options.mergeAdditionalProperties &&
+            referenceSubSchema != undefined
+        ) {
             delete dereferencedSubSchema.$ref;
+            Dereferencer.merge(referenceSubSchema, dereferencedSubSchema);
+            dereferencedSubSchema = referenceSubSchema;
         }
 
         return dereferencedSubSchema;
