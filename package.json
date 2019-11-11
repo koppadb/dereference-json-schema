@@ -2,7 +2,7 @@
     "name": "@koppadb/dereference-json-schema",
     "description": "JavaScript library to resolve `$ref` references in a given set of JSON schemas",
     "license": "ISC",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "repository": {
         "type": "git",
         "url": "https://github.com/koppadb/dereference-json-schema.git"
