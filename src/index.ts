@@ -97,7 +97,6 @@ export class Dereferencer {
         }
 
         if (subSchema.$deref === false) {
-            // TODO: Document $deref feature
             return subSchema;
         }
 
@@ -257,7 +256,7 @@ export class Dereferencer {
         const keys = pointer.split('/');
         keys.shift();
 
-        return keys.map((key) => key.replace(/~1/g, '/').replace(/~0/g, '~'));
+        return keys.map(key => key.replace(/~1/g, '/').replace(/~0/g, '~'));
     }
 
     /**
