@@ -33,9 +33,9 @@ const specs = {
     ],
 };
 
-describe('Dereferencer', function() {
+describe('Dereferencer', function () {
     for (const specDescription in specs) {
-        it(specDescription, async function() {
+        it(specDescription, async function () {
             expect(() =>
                 new Dereferencer(specs[specDescription]).dereferenceSchemas()
             ).toThrowError();

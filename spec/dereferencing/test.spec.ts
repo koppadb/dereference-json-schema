@@ -3,12 +3,12 @@ import 'jasmine';
 import { join } from 'path';
 import { Dereferencer, DereferencerOptions } from '../../src/index';
 
-describe('dereferencing', function() {
+describe('dereferencing', function () {
     const folderPaths = readdirSync(__dirname).filter(
-        path => !path.includes('.')
+        (path) => !path.includes('.')
     );
     for (let basePath of folderPaths) {
-        it(`should dereference test "${basePath}" as expected`, async function() {
+        it(`should dereference test "${basePath}" as expected`, async function () {
             basePath = join(__dirname, basePath);
             const inputSchemas = await readJSON(
                 join(basePath, 'inputSchemas.json')
@@ -33,8 +33,8 @@ describe('dereferencing', function() {
 
             const expectedSchemas = await Promise.all(
                 (await readdir(basePath))
-                    .filter(path => path.includes('.expected.json'))
-                    .map(path => readJSON(join(basePath, path)))
+                    .filter((path) => path.includes('.expected.json'))
+                    .map((path) => readJSON(join(basePath, path)))
             );
 
             for (const schema of expectedSchemas) {

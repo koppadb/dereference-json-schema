@@ -87,7 +87,7 @@ export class Dereferencer {
     }
 
     /**
-     * Recursivly dereferences a subschema that has a given URI and returns it
+     * Recursively dereferences a subschema that has a given URI and returns it
      * @param uri Base URI of the subschema
      * @return Dereferenced subschema
      */
@@ -108,18 +108,18 @@ export class Dereferencer {
                     `Reference in subschema "${uri}" is not a string.`
                 );
             }
-            const refereceURI = Dereferencer.normalizeURI(
+            const referenceURI = Dereferencer.normalizeURI(
                 URI.resolve(uri, subSchema.$ref)
             );
-            const referencedSchemaURI = Dereferencer.getSchemaURI(refereceURI);
+            const referencedSchemaURI = Dereferencer.getSchemaURI(referenceURI);
 
             if (!this.dereferencedSchemaURIs.has(referencedSchemaURI)) {
                 referenceSubSchema = this.dereferenceSubSchema(
-                    refereceURI,
-                    this.getSubSchema(refereceURI)
+                    referenceURI,
+                    this.getSubSchema(referenceURI)
                 );
             } else {
-                referenceSubSchema = this.getSubSchema(refereceURI);
+                referenceSubSchema = this.getSubSchema(referenceURI);
             }
 
             if (this.options.removeIDs) {
@@ -177,7 +177,7 @@ export class Dereferencer {
     /**
      * Appends a key to the JSON Pointer in a URI
      * @param uri URI containing JSON Pointer as fragment
-     * @param key JSON Poiner key that gets appended
+     * @param key JSON Pointer key that gets appended
      */
     public static appendToJSONPointerFragment(uri: string, key: string) {
         const data = URI.parse(uri);
@@ -257,7 +257,7 @@ export class Dereferencer {
         const keys = pointer.split('/');
         keys.shift();
 
-        return keys.map(key => key.replace(/~1/g, '/').replace(/~0/g, '~'));
+        return keys.map((key) => key.replace(/~1/g, '/').replace(/~0/g, '~'));
     }
 
     /**
@@ -272,7 +272,7 @@ export class Dereferencer {
     }
 
     /**
-     * Recursivly merges one object into another, overwriting properties
+     * Recursively merges one object into another, overwriting properties
      * Undefined source properties will not get merged
      * Arrays will get completely overwritten
      * @param destination
