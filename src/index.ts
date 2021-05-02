@@ -256,7 +256,7 @@ export class Dereferencer {
         const keys = pointer.split('/');
         keys.shift();
 
-        return keys.map(key => key.replace(/~1/g, '/').replace(/~0/g, '~'));
+        return keys.map((key) => key.replace(/~1/g, '/').replace(/~0/g, '~'));
     }
 
     /**
